@@ -5,8 +5,10 @@
     "main": "index.js",
     "scripts": {
         "test": "cross-env NODE_ENV=test && jest --no-cache --coverage",
-        "dev": "ts-node server/index.ts",
-        "ts-jest-migrate": "ts-jest config:migrate"
+        "dev": "cross-env NODE_ENV=development ts-node server/index.ts",
+        "ts-jest-migrate": "ts-jest config:migrate",
+        "build": "cross-env NODE_ENV=production && tsc",
+        "start": "npm run build && node dist/index.js"
     },
     "keywords": [],
     "author": "",
