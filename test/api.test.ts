@@ -1,8 +1,9 @@
 import request from 'supertest';
 import { beforeEach, afterEach, describe, it, expect } from '@jest/globals';
+import Redis from 'ioredis';
 import { app } from '../server';
 import { dataSource } from '../server/data-source';
-import Redis from 'ioredis';
+import { INVALID_URL } from './util';
 
 const generateRandomUrl = () => {
     const generateRandomString = () => {
@@ -22,8 +23,6 @@ const randomUrl = generateRandomUrl();
 let redis: Redis;
 
 const shortUrl = { current: '' };
-
-const invalidUrl = 'xxxxxxx';
 
 beforeEach(async () => {
     await dataSource.initialize();
@@ -50,7 +49,7 @@ describe('POST /api/url/short', () => {
     });
 
     it('should failed when send a invalid url', async () => {
-        const res = await request(app).post('/api/url/short').send({ url: invalidUrl });
+        const res = await request(app).post('/api/url/short').send({ url: INVALID_URL });
         expect(res.body.code).toBe(400);
         expect(res.body.message).toBe('Invalid url');
     });
@@ -76,13 +75,13 @@ describe('GET /api/url/origin', () => {
     });
 
     it('should fail when shortUrl have not been generated', async () => {
-        const res = await request(app).get(`/api/url/origin?url=https://x.cc/asd`);
+        const res = await request(app).get(`/api/url/origin?url=${generateRandomUrl()}`);
         expect(res.body.code).toBe(400);
         expect(res.body.message).toBe('Url dose not exist');
     });
 
     it('should failed when send a invalid url', async () => {
-        const res = await request(app).get(`/api/url/origin?url=${invalidUrl}`);
+        const res = await request(app).get(`/api/url/origin?url=${INVALID_URL}`);
         expect(res.body.code).toBe(400);
         expect(res.body.message).toBe('Invalid url');
     });

@@ -1,5 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { validateUrl, number10to62 } from '../server/util/common';
+import { INVALID_URL } from './util';
 
 describe('url validation', () => {
     it('https://google.com should be valid url', () => {
@@ -7,7 +8,7 @@ describe('url validation', () => {
     });
 
     it('xxxx.cn should be invalid url', () => {
-        expect(validateUrl('xxxx.cn')).toBe(false);
+        expect(validateUrl(INVALID_URL)).toBe(false);
     });
 });
 
