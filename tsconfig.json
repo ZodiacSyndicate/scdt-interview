@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* Strict Type-Checking Options */
+    "strict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    "baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
+
+    "paths": {
+      // 配置模块路径映射
+      "@client/*": ["./client/*"],
+      "@cyber-gui/*": ["./cyber-gui/*"],
+      "@server/*": ["./server/*"],
+      "@scripts/*": ["./scripts/webpack/*"],
+      "@img/*": ["./client/img/*"],
+      "@app/*": ["./client/app/*"]
+    },
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  }
+}

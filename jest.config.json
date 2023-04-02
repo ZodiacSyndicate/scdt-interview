@@ -1,0 +1,12 @@
+{
+    "transform": {
+        "^.+\\.tsx?$": [
+            "ts-jest",
+            {
+                "tsconfig": "./tsconfig.json"
+            }
+        ]
+    },
+    "coverageDirectory": "coverage",
+    "coverageProvider": "v8"
+}
