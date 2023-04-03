@@ -20,13 +20,13 @@
 
 ## 接口信息
 
-### POST /api/url/short
+### POST http://localhost:3000/api/url/short
 
     { url: string }
 
 接收长链接，返回短链接
 
-### GET /api/url/origin
+### GET http://localhost:3000/api/url/origin
 
     { url: string }
 
